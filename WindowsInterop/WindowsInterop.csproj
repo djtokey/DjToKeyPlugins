@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Windows.cs" />
     <Compile Include="WindowsInterop.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
