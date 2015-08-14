@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.ClearScript.V8;
+﻿using Ktos.DjToKey.Plugins.Scripts;
 using Midi;
+using System;
 
 namespace Ktos.DjToKey.Plugins.DjControlMp3Le
 {
@@ -57,11 +57,67 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
         EffectA8 = 8
     }
 
-    public class Control : IDisposable, IPlugin
+    public class DjButton : IScriptType
+    {
+        private const string objName = "DjButton";
+
+        public string Name
+        {
+            get
+            {
+                return objName;
+            }
+        }
+
+        public Type Type
+        {
+            get
+            {
+                return typeof(Button);
+            }
+        }
+    }
+
+    public class DjControl : IScriptObject
+    {
+        private const string objName = "DjControl";
+
+        public string Name
+        {
+            get
+            {
+                return objName;
+            }
+        }
+
+        public object Object
+        {
+            get
+            {
+                return w;
+            }
+        }
+
+        private DjControlMp3LeImpl w;
+
+        public DjControl()
+        {
+            try
+            {
+                w = new DjControlMp3LeImpl();
+            }
+            catch (Exception)
+            {
+                w = null;
+            }
+        }
+    }
+
+    public class DjControlMp3LeImpl : IDisposable
     {
         private readonly OutputDevice device;
 
-        public Control()
+        public DjControlMp3LeImpl()
         {
             device = null;
             foreach (var d in OutputDevice.InstalledDevices)
@@ -74,7 +130,6 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
                 throw new Exception("No DjControl MP3 LE device available");
 
             device.Open();
-
         }
 
         public void TurnAllOff()
@@ -87,7 +142,7 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
 
         public void TurnOn(Button button)
         {
-            turnOn((byte) button);
+            turnOn((byte)button);
         }
 
         public void TurnOnBlink(Button button)
@@ -114,12 +169,6 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
         public void Dispose()
         {
             if (device != null) device.Close();
-        }
-
-        public void Register(V8ScriptEngine engine)
-        {
-            engine.AddHostObject("DjControlMp3Le", this);
-            engine.AddHostType("DjControlButtons", typeof (Button));
         }
     }
 }
