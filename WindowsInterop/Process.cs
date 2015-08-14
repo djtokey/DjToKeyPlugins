@@ -1,11 +1,8 @@
-﻿using System;
-using Ktos.DjToKey.Plugins.Contracts;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using Ktos.DjToKey.Plugins.Scripts;
 
 namespace Ktos.DjToKey.Plugins.WindowsInterop
 {
-    class Process : IScriptObject
+    public class Process : IScriptObject
     {
         private const string objName = "Process";
 
@@ -33,7 +30,7 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
         }
     }
 
-    class ProcessImpl
+    internal class ProcessImpl
     {
         public void Start(string path)
         {

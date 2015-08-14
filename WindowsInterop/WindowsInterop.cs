@@ -1,11 +1,11 @@
-﻿using System;
-using Ktos.DjToKey.Plugins.Contracts;
+﻿using Ktos.DjToKey.Plugins.Scripts;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Ktos.DjToKey.Plugins.WindowsInterop
 {
-    class WindowsInterop : IScriptObject
+    public class WindowsInterop : IScriptObject
     {
         private const string objName = "Windows";
 
@@ -33,13 +33,13 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
         }
     }
 
-    class WindowsImpl
+    internal class WindowsImpl
     {
         [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
+        private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         /// <summary>
         /// Returns title of active window in operating system
