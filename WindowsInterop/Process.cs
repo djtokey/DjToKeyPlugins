@@ -1,7 +1,9 @@
 ﻿using Ktos.DjToKey.Plugins.Scripts;
+using System.ComponentModel.Composition;
 
 namespace Ktos.DjToKey.Plugins.WindowsInterop
 {
+    [Export(typeof(IScriptObject))]
     public class Process : IScriptObject
     {
         private const string objName = "Process";
@@ -30,7 +32,7 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
         }
     }
 
-    internal class ProcessImpl
+    public class ProcessImpl
     {
         public void Start(string path)
         {

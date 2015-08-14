@@ -1,6 +1,7 @@
 ﻿using Ktos.DjToKey.Plugins.Scripts;
 using Midi;
 using System;
+using System.ComponentModel.Composition;
 
 namespace Ktos.DjToKey.Plugins.DjControlMp3Le
 {
@@ -57,6 +58,7 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
         EffectA8 = 8
     }
 
+    [Export(typeof(IScriptType))]
     public class DjButton : IScriptType
     {
         private const string objName = "DjButton";
@@ -78,6 +80,7 @@ namespace Ktos.DjToKey.Plugins.DjControlMp3Le
         }
     }
 
+    [Export(typeof(IScriptObject))]
     public class DjControl : IScriptObject
     {
         private const string objName = "DjControl";

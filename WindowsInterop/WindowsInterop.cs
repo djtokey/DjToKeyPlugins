@@ -1,10 +1,12 @@
 ﻿using Ktos.DjToKey.Plugins.Scripts;
 using System;
+using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Ktos.DjToKey.Plugins.WindowsInterop
 {
+    [Export(typeof(IScriptObject))]
     public class WindowsInterop : IScriptObject
     {
         private const string objName = "Windows";
@@ -33,7 +35,7 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
         }
     }
 
-    internal class WindowsImpl
+    public class WindowsImpl
     {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
