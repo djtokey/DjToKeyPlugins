@@ -9,7 +9,7 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
     [Export(typeof(IScriptObject))]
     public class WindowsInterop : IScriptObject
     {
-        private const string objName = "Windows";
+        private const string objName = "Window";
 
         public string Name
         {
