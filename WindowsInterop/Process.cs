@@ -1,5 +1,6 @@
 ﻿using Ktos.DjToKey.Plugins.Scripts;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 
 namespace Ktos.DjToKey.Plugins.WindowsInterop
 {
@@ -10,18 +11,12 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
 
         public string Name
         {
-            get
-            {
-                return objName;
-            }
+            get { return objName; }
         }
 
         public object Object
         {
-            get
-            {
-                return w;
-            }
+            get { return w; }
         }
 
         private ProcessImpl w;
@@ -36,7 +31,19 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
     {
         public void Start(string path)
         {
-            System.Diagnostics.Process.Start(path);
+            var psi = new ProcessStartInfo { FileName = path, UseShellExecute = true };
+            System.Diagnostics.Process.Start(psi);
+        }
+
+        public void Start(string path, string args)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = path,
+                UseShellExecute = true,
+                Arguments = args
+            };
+            System.Diagnostics.Process.Start(psi);
         }
     }
 }

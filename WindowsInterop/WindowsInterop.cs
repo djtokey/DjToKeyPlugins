@@ -13,18 +13,12 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
 
         public string Name
         {
-            get
-            {
-                return objName;
-            }
+            get { return objName; }
         }
 
         public object Object
         {
-            get
-            {
-                return w;
-            }
+            get { return w; }
         }
 
         private WindowsImpl w;
@@ -47,7 +41,7 @@ namespace Ktos.DjToKey.Plugins.WindowsInterop
         /// Returns title of active window in operating system
         /// </summary>
         /// <returns>Title of foreground window</returns>
-        private string GetActiveWindowTitle()
+        public string GetActiveWindowTitle()
         {
             const int nChars = 256;
             StringBuilder Buff = new StringBuilder(nChars);
